@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "laravel_rest_api",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

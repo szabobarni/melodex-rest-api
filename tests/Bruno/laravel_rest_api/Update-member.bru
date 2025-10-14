@@ -1,0 +1,25 @@
+meta {
+  name: Update-member
+  type: http
+  seq: 5
+}
+
+patch {
+  url: {{base-url}}/member/21
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "name": "Peterrrr"
+  }
+}
+
+settings {
+  encodeUrl: true
+}

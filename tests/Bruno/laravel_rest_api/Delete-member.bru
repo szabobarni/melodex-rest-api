@@ -1,0 +1,19 @@
+meta {
+  name: Delete-member
+  type: http
+  seq: 6
+}
+
+delete {
+  url: {{base-url}}/member/21
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+settings {
+  encodeUrl: true
+}

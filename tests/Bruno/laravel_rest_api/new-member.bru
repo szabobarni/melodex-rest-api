@@ -1,0 +1,29 @@
+meta {
+  name: new-member
+  type: http
+  seq: 4
+}
+
+post {
+  url: http://localhost:8000/api/member
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: 7|iPlHV9nF48FftmmZ3qaRbjHbL9V2cLUOSoJqRio564130ef3
+}
+
+body:json {
+  {
+      "name": "Bzasi",
+      "instrument": "ennek",
+      "year": "2006",
+      "artist_id": "13",
+      "image": "https://i.scdn.co/image/ab67616d0000b273b19647a91fa9857376cf54a5"
+  }
+}
+
+settings {
+  encodeUrl: true
+}
