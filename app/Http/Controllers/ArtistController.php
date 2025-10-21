@@ -8,7 +8,7 @@ use App\Http\Requests\ArtistRequest;
 class ArtistController extends Controller
 {
     /**
-     * @api {get} /artists Get all artists
+     * @api {get} /artist Get all artists
      * @apiName GetArtists
      * @apiGroup Artist
      * @apiVersion 1.0.0
@@ -46,7 +46,7 @@ class ArtistController extends Controller
     }
         
     /**
-     * @api {post} /artists Create a new artist
+     * @api {post} /artist Create a new artist
      * @apiName CreateArtist
      * @apiGroup Artist
      * @apiVersion 1.0.0
@@ -89,7 +89,7 @@ class ArtistController extends Controller
     }
         
     /**
-     * @api {patch} /artists/:id Update an artist
+     * @api {patch} /artist/:id Update an artist
      * @apiName UpdateArtist
      * @apiGroup Artist
      * @apiVersion 1.0.0
@@ -134,7 +134,7 @@ class ArtistController extends Controller
 	}
      
     /**
-     * @api {delete} /artists/:id Delete an artist
+     * @api {delete} /artist/:id Delete an artist
      * @apiName DeleteArtist
      * @apiGroup Artist
      * @apiVersion 1.0.0

@@ -9,7 +9,7 @@ class MemberController extends Controller
 {
         
     /**
-     * @api {get} /members Get all members
+     * @api {get} /member Get all members
      * @apiName GetMembers
      * @apiGroup Member
      * @apiVersion 1.0.0
@@ -47,7 +47,7 @@ class MemberController extends Controller
     }
         
     /**
-     * @api {post} /members Create a new member
+     * @api {post} /member Create a new member
      * @apiName CreateMember
      * @apiGroup Member
      * @apiVersion 1.0.0
@@ -90,7 +90,7 @@ class MemberController extends Controller
     }
         
     /**
-     * @api {patch} /members/:id Update a member
+     * @api {patch} /member/:id Update a member
      * @apiName UpdateMember
      * @apiGroup Member
      * @apiVersion 1.0.0
@@ -135,7 +135,7 @@ class MemberController extends Controller
 	}
         
     /**
-     * @api {delete} /members/:id Delete a member
+     * @api {delete} /member/:id Delete a member
      * @apiName DeleteMember
      * @apiGroup Member
      * @apiVersion 1.0.0

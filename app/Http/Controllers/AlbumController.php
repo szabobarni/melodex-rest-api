@@ -9,7 +9,7 @@ class AlbumController extends Controller
 {
 
    /**
-    * @api {get} /albums Get all albums
+    * @api {get} /album Get all albums
     * @apiName GetAlbums
     * @apiGroup Album
     * @apiVersion 1.0.0
@@ -45,7 +45,7 @@ class AlbumController extends Controller
     }
 
    /**
-    * @api {post} /albums Create a new album
+    * @api {post} /album Create a new album
     * @apiName CreateAlbum
     * @apiGroup Album
     * @apiVersion 1.0.0
@@ -87,7 +87,7 @@ class AlbumController extends Controller
     }
 
     /**
-     * @api {patch} /albums/:id Update an album
+     * @api {patch} /album/:id Update an album
      * @apiName UpdateAlbum
      * @apiGroup Album
      * @apiVersion 1.0.0
@@ -132,7 +132,7 @@ class AlbumController extends Controller
 	} 
 
     /**
-     * @api {delete} /albums/:id Delete an album
+     * @api {delete} /album/:id Delete an album
      * @apiName DeleteAlbum
      * @apiGroup Album
      * @apiVersion 1.0.0

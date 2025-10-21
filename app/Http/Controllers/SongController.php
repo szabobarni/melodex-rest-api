@@ -9,7 +9,7 @@ class SongController extends Controller
 {
         
     /**
-     * @api {get} /songs Get all songs
+     * @api {get} /song Get all songs
      * @apiName GetSongs
      * @apiGroup Song
      * @apiVersion 1.0.0
@@ -45,7 +45,7 @@ class SongController extends Controller
     }
         
     /**
-     * @api {post} /songs Create a new song
+     * @api {post} /song Create a new song
      * @apiName CreateSong
      * @apiGroup Song
      * @apiVersion 1.0.0
@@ -85,7 +85,7 @@ class SongController extends Controller
     }
         
     /**
-     * @api {patch} /songs/:id Update a song
+     * @api {patch} /song/:id Update a song
      * @apiName UpdateSong
      * @apiGroup Song
      * @apiVersion 1.0.0
@@ -127,7 +127,7 @@ class SongController extends Controller
 	} 
         
     /**
-     * @api {delete} /songs/:id Delete a song
+     * @api {delete} /song/:id Delete a song
      * @apiName DeleteSong
      * @apiGroup Song
      * @apiVersion 1.0.0
