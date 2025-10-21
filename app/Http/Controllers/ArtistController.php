@@ -83,9 +83,7 @@ class ArtistController extends Controller
     {
         $artist = Artist::create($request->all());
 
-        return response()->json([
-            'artist' => $artist,
-        ]);
+        return response(json_encode(['artist' => $artist,]),201);
     }
         
     /**
@@ -125,7 +123,10 @@ class ArtistController extends Controller
 
     public function update(ArtistRequest $request, $id)
 	{
-		$artist = Artist::findOrFail($id);
+		$artist = Artist::find($id);
+        if(empty($artist)){
+            return response(json_encode(['message'=>"Artist ({$id}) not found!"]),404);
+        };
 		$artist->update($request->all());
 
 		return response()->json([
@@ -157,8 +158,9 @@ class ArtistController extends Controller
         $artist = Artist::findOrFail($id);
         $artist->delete();
         return response()->json([
-            'message' => 'Artist deleted successfully',
-            'id' => $id
-        ]);
+        'message' => 'Artist deleted successfully',
+        'id' => $id
+    ], 410);
+
     }
 }
