@@ -1,11 +1,11 @@
 meta {
-  name: Update-member
+  name: Update-album
   type: http
-  seq: 5
+  seq: 8
 }
 
 patch {
-  url: {{base-url}}/member/22
+  url: {{base-url}}/album/29
   body: json
   auth: bearer
 }
@@ -16,7 +16,8 @@ auth:bearer {
 
 body:json {
   {
-    "name": "Peterrrr"
+    "name":"Wild fire",
+    "year": "2026"
   }
 }
 

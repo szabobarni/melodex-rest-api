@@ -1,0 +1,29 @@
+meta {
+  name: New-artist
+  type: http
+  seq: 15
+}
+
+post {
+  url: {{base-url}}/artist
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "name": "Mollywood",
+    "nationality": "Austria",
+    "image": "noooooooope",
+    "description": "nincsssssss",
+    "is_band": "no"
+  }
+}
+
+settings {
+  encodeUrl: true
+}

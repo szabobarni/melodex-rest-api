@@ -12,6 +12,18 @@ We do _not_ use default `SPA Authentication` https://laravel.com/docs/11.x/sanct
 | /artist      | POST        | Y    | new artists added |
 | /artist      | PATCH       | Y    | edited artists    |
 | /artist      | DELETE      | Y    | id                |
+| /album       | GET         |      | all albums        |
+| /album       | POST        | Y    | new albums added  |
+| /album       | PATCH       | Y    | edited albums     |
+| /album       | DELETE      | Y    | id                |
+| /member      | GET         |      | all members       |
+| /member      | POST        | Y    | new memebers added|
+| /member      | PATCH       | Y    | edited members    |
+| /member      | DELETE      | Y    | id                |
+| /song        | GET         |      | all songs         |
+| /song        | POST        | Y    | new songs added   |
+| /song        | PATCH       | Y    | edited songs      |
+| /song        | DELETE      | Y    | id                |
 
 ## Steps
 

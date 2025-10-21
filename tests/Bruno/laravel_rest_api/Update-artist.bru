@@ -1,11 +1,11 @@
 meta {
-  name: Update-member
+  name: Update-artist
   type: http
-  seq: 5
+  seq: 16
 }
 
 patch {
-  url: {{base-url}}/member/22
+  url: {{base-url}}/artist/15
   body: json
   auth: bearer
 }
@@ -16,7 +16,7 @@ auth:bearer {
 
 body:json {
   {
-    "name": "Peterrrr"
+    "description": "Welcome to Mollywood"
   }
 }
 

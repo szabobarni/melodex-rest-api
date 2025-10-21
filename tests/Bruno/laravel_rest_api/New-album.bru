@@ -1,0 +1,29 @@
+meta {
+  name: New-album
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{base-url}}/album
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "name": "Bzasi",
+      "cover": "https://i.scdn.co/image/ab67616d0000b273b19647a91fa9857376cf54a5",
+      "year": "2006",
+      "genre": "POP",
+      "artist_id": "13"
+  }
+}
+
+settings {
+  encodeUrl: true
+}

@@ -1,11 +1,11 @@
 meta {
-  name: Update-member
+  name: Update-song
   type: http
-  seq: 5
+  seq: 12
 }
 
 patch {
-  url: {{base-url}}/member/22
+  url: {{base-url}}/song/365
   body: json
   auth: bearer
 }
@@ -16,7 +16,7 @@ auth:bearer {
 
 body:json {
   {
-    "name": "Peterrrr"
+    "lyrics": "HER"
   }
 }
 

@@ -1,202 +1,581 @@
 {
-  "name": "laravel_rest_api",
-  "version": "1",
-  "items": [
+  "info": {
+    "name": "laravel_rest_api",
+    "description": "",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
     {
-      "type": "http",
-      "name": "Login",
-      "filename": "Login.bru",
-      "seq": 2,
-      "settings": {
-        "encodeUrl": true
-      },
-      "tags": [],
-      "request": {
-        "url": "http://localhost:8000/api/user/login",
-        "method": "POST",
-        "headers": [],
-        "params": [],
-        "body": {
-          "mode": "json",
-          "json": "{\n    \"email\" : \"en@ren.com\",\n    \"password\" : \"123\"\n}",
-          "formUrlEncoded": [],
-          "multipartForm": [],
-          "file": []
-        },
-        "script": {},
-        "vars": {},
-        "assertions": [],
-        "tests": "",
-        "docs": "",
-        "auth": {
-          "mode": "inherit"
-        }
-      }
-    },
-    {
-      "type": "http",
-      "name": "new-member",
-      "filename": "new-member.bru",
-      "seq": 4,
-      "settings": {
-        "encodeUrl": true
-      },
-      "tags": [],
-      "request": {
-        "url": "http://localhost:8000/api/member",
-        "method": "POST",
-        "headers": [],
-        "params": [],
-        "body": {
-          "mode": "json",
-          "json": "{\n    \"name\": \"Bzasi\",\n    \"instrument\": \"ennek\",\n    \"year\": \"2006\",\n    \"artist_id\": \"13\",\n    \"image\": \"https://i.scdn.co/image/ab67616d0000b273b19647a91fa9857376cf54a5\"\n}",
-          "formUrlEncoded": [],
-          "multipartForm": [],
-          "file": []
-        },
-        "script": {},
-        "vars": {},
-        "assertions": [],
-        "tests": "",
-        "docs": "",
-        "auth": {
-          "mode": "bearer",
-          "bearer": {
-            "token": "7|iPlHV9nF48FftmmZ3qaRbjHbL9V2cLUOSoJqRio564130ef3"
-          }
-        }
-      }
-    },
-    {
-      "type": "http",
-      "name": "Update-member",
-      "filename": "Update-member.bru",
-      "seq": 5,
-      "settings": {
-        "encodeUrl": true
-      },
-      "tags": [],
-      "request": {
-        "url": "{{base-url}}/member/21",
-        "method": "PATCH",
-        "headers": [],
-        "params": [],
-        "body": {
-          "mode": "json",
-          "json": "{\n  \"name\": \"Peterrrr\"\n}",
-          "formUrlEncoded": [],
-          "multipartForm": [],
-          "file": []
-        },
-        "script": {},
-        "vars": {},
-        "assertions": [],
-        "tests": "",
-        "docs": "",
-        "auth": {
-          "mode": "bearer",
-          "bearer": {
-            "token": "{{token}}"
-          }
-        }
-      }
-    },
-    {
-      "type": "http",
-      "name": "Delete-member",
-      "filename": "Delete-member.bru",
-      "seq": 6,
-      "settings": {
-        "encodeUrl": true
-      },
-      "tags": [],
-      "request": {
-        "url": "{{base-url}}/member/21",
-        "method": "DELETE",
-        "headers": [],
-        "params": [],
-        "body": {
-          "mode": "none",
-          "formUrlEncoded": [],
-          "multipartForm": [],
-          "file": []
-        },
-        "script": {},
-        "vars": {},
-        "assertions": [],
-        "tests": "",
-        "docs": "",
-        "auth": {
-          "mode": "bearer",
-          "bearer": {
-            "token": "{{token}}"
-          }
-        }
-      }
-    },
-    {
-      "type": "http",
       "name": "All-Member",
-      "filename": "All-Member.bru",
-      "seq": 3,
-      "settings": {
-        "encodeUrl": true
-      },
-      "tags": [],
+      "event": [],
       "request": {
-        "url": "{{base-url}}/member",
         "method": "GET",
-        "headers": [],
-        "params": [],
-        "body": {
-          "mode": "none",
-          "formUrlEncoded": [],
-          "multipartForm": [],
-          "file": []
-        },
-        "script": {},
-        "vars": {},
-        "assertions": [],
-        "tests": "",
-        "docs": "",
+        "header": [],
         "auth": {
-          "mode": "inherit"
+          "type": "noauth"
+        },
+        "description": "",
+        "url": {
+          "raw": "{{base-url}}/member",
+          "protocol": "",
+          "host": [
+            "{{base-url}}"
+          ],
+          "path": [
+            "member"
+          ],
+          "query": [],
+          "variable": []
+        }
+      }
+    },
+    {
+      "name": "Delete-member",
+      "event": [],
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "auth": {
+          "type": "bearer",
+          "bearer": {
+            "key": "token",
+            "value": "{{token}}",
+            "type": "string"
+          }
+        },
+        "description": "",
+        "url": {
+          "raw": "{{base-url}}/member/21",
+          "protocol": "",
+          "host": [
+            "{{base-url}}"
+          ],
+          "path": [
+            "member",
+            "21"
+          ],
+          "query": [],
+          "variable": []
+        }
+      }
+    },
+    {
+      "name": "Login",
+      "event": [],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "auth": {
+          "type": "noauth"
+        },
+        "description": "",
+        "url": {
+          "raw": "http://localhost:8000/api/user/login",
+          "protocol": "http",
+          "host": [
+            "localhost:8000"
+          ],
+          "path": [
+            "api",
+            "user",
+            "login"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"email\" : \"en@ren.com\",\n    \"password\" : \"123\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "new-member",
+      "event": [],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "auth": {
+          "type": "bearer",
+          "bearer": {
+            "key": "token",
+            "value": "7|iPlHV9nF48FftmmZ3qaRbjHbL9V2cLUOSoJqRio564130ef3",
+            "type": "string"
+          }
+        },
+        "description": "",
+        "url": {
+          "raw": "http://localhost:8000/api/member",
+          "protocol": "http",
+          "host": [
+            "localhost:8000"
+          ],
+          "path": [
+            "api",
+            "member"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"name\": \"Bzasi\",\n    \"instrument\": \"ennek\",\n    \"year\": \"2006\",\n    \"artist_id\": \"13\",\n    \"image\": \"https://i.scdn.co/image/ab67616d0000b273b19647a91fa9857376cf54a5\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Update-member",
+      "event": [],
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "auth": {
+          "type": "bearer",
+          "bearer": {
+            "key": "token",
+            "value": "{{token}}",
+            "type": "string"
+          }
+        },
+        "description": "",
+        "url": {
+          "raw": "{{base-url}}/member/21",
+          "protocol": "",
+          "host": [
+            "{{base-url}}"
+          ],
+          "path": [
+            "member",
+            "21"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Peterrrr\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "All-albums",
+      "event": [],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "auth": {
+          "type": "noauth"
+        },
+        "description": "",
+        "url": {
+          "raw": "{{base-url}}/album",
+          "protocol": "",
+          "host": [
+            "{{base-url}}"
+          ],
+          "path": [
+            "album"
+          ],
+          "query": [],
+          "variable": []
+        }
+      }
+    },
+    {
+      "name": "New-album",
+      "event": [],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "auth": {
+          "type": "bearer",
+          "bearer": {
+            "key": "token",
+            "value": "{{token}}",
+            "type": "string"
+          }
+        },
+        "description": "",
+        "url": {
+          "raw": "{{base-url}}/album",
+          "protocol": "",
+          "host": [
+            "{{base-url}}"
+          ],
+          "path": [
+            "album"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"name\": \"Bzasi\",\n    \"cover\": \"https://i.scdn.co/image/ab67616d0000b273b19647a91fa9857376cf54a5\",\n    \"year\": \"2006\",\n    \"genre\": \"POP\",\n    \"artist_id\": \"13\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Update-album",
+      "event": [],
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "auth": {
+          "type": "bearer",
+          "bearer": {
+            "key": "token",
+            "value": "{{token}}",
+            "type": "string"
+          }
+        },
+        "description": "",
+        "url": {
+          "raw": "{{base-url}}/album/29",
+          "protocol": "",
+          "host": [
+            "{{base-url}}"
+          ],
+          "path": [
+            "album",
+            "29"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\":\"Wild fire\",\n  \"year\": \"2026\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Delete-album",
+      "event": [],
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "auth": {
+          "type": "bearer",
+          "bearer": {
+            "key": "token",
+            "value": "{{token}}",
+            "type": "string"
+          }
+        },
+        "description": "",
+        "url": {
+          "raw": "{{base-url}}/album/29",
+          "protocol": "",
+          "host": [
+            "{{base-url}}"
+          ],
+          "path": [
+            "album",
+            "29"
+          ],
+          "query": [],
+          "variable": []
+        }
+      }
+    },
+    {
+      "name": "All-songs",
+      "event": [],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "auth": {
+          "type": "noauth"
+        },
+        "description": "",
+        "url": {
+          "raw": "{{base-url}}/song",
+          "protocol": "",
+          "host": [
+            "{{base-url}}"
+          ],
+          "path": [
+            "song"
+          ],
+          "query": [],
+          "variable": []
+        }
+      }
+    },
+    {
+      "name": "New-song",
+      "event": [],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "auth": {
+          "type": "bearer",
+          "bearer": {
+            "key": "token",
+            "value": "{{token}}",
+            "type": "string"
+          }
+        },
+        "description": "",
+        "url": {
+          "raw": "{{base-url}}/song",
+          "protocol": "",
+          "host": [
+            "{{base-url}}"
+          ],
+          "path": [
+            "song"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"IT\",\n  \"lyrics\": \"IT\",\n  \"songwriter\": \"HIM\",\n  \"album_id\": \"27\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Update-song",
+      "event": [],
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "auth": {
+          "type": "bearer",
+          "bearer": {
+            "key": "token",
+            "value": "{{token}}",
+            "type": "string"
+          }
+        },
+        "description": "",
+        "url": {
+          "raw": "{{base-url}}/song/365",
+          "protocol": "",
+          "host": [
+            "{{base-url}}"
+          ],
+          "path": [
+            "song",
+            "365"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"lyrics\": \"HER\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Delete-song",
+      "event": [],
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "auth": {
+          "type": "bearer",
+          "bearer": {
+            "key": "token",
+            "value": "{{token}}",
+            "type": "string"
+          }
+        },
+        "description": "",
+        "url": {
+          "raw": "{{base-url}}/song/365",
+          "protocol": "",
+          "host": [
+            "{{base-url}}"
+          ],
+          "path": [
+            "song",
+            "365"
+          ],
+          "query": [],
+          "variable": []
+        }
+      }
+    },
+    {
+      "name": "All-artists",
+      "event": [],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "auth": {
+          "type": "noauth"
+        },
+        "description": "",
+        "url": {
+          "raw": "{{base-url}}/artist",
+          "protocol": "",
+          "host": [
+            "{{base-url}}"
+          ],
+          "path": [
+            "artist"
+          ],
+          "query": [],
+          "variable": []
+        }
+      }
+    },
+    {
+      "name": "New-artist",
+      "event": [],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "auth": {
+          "type": "bearer",
+          "bearer": {
+            "key": "token",
+            "value": "{{token}}",
+            "type": "string"
+          }
+        },
+        "description": "",
+        "url": {
+          "raw": "{{base-url}}/artist",
+          "protocol": "",
+          "host": [
+            "{{base-url}}"
+          ],
+          "path": [
+            "artist"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Mollywood\",\n  \"nationality\": \"Austria\",\n  \"image\": \"noooooooope\",\n  \"description\": \"nincsssssss\",\n  \"is_band\": \"no\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Update-artist",
+      "event": [],
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "auth": {
+          "type": "bearer",
+          "bearer": {
+            "key": "token",
+            "value": "{{token}}",
+            "type": "string"
+          }
+        },
+        "description": "",
+        "url": {
+          "raw": "{{base-url}}/artist/15",
+          "protocol": "",
+          "host": [
+            "{{base-url}}"
+          ],
+          "path": [
+            "artist",
+            "15"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"description\": \"Welcome to Mollywood\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Delete-artist",
+      "event": [],
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "auth": {
+          "type": "bearer",
+          "bearer": {
+            "key": "token",
+            "value": "{{token}}",
+            "type": "string"
+          }
+        },
+        "description": "",
+        "url": {
+          "raw": "{{base-url}}/artist/15",
+          "protocol": "",
+          "host": [
+            "{{base-url}}"
+          ],
+          "path": [
+            "artist",
+            "15"
+          ],
+          "query": [],
+          "variable": []
         }
       }
     }
   ],
-  "environments": [],
-  "root": {
-    "request": {
-      "vars": {
-        "req": [
-          {
-            "name": "token",
-            "value": "7|iPlHV9nF48FftmmZ3qaRbjHbL9V2cLUOSoJqRio564130ef3",
-            "enabled": true,
-            "local": false,
-            "uid": "D79gD2wPDo6phrTMXb6X4"
-          },
-          {
-            "name": "base-url",
-            "value": "http://localhost:8000/api",
-            "enabled": true,
-            "local": false,
-            "uid": "sZ4EL95HgZficRg5E87Qh"
-          }
-        ]
-      }
+  "variable": [
+    {
+      "key": "base-url",
+      "value": "",
+      "type": "default"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "default"
     }
-  },
-  "brunoConfig": {
-    "version": "1",
-    "name": "laravel_rest_api",
-    "type": "collection",
-    "ignore": [
-      "node_modules",
-      ".git"
-    ],
-    "size": 0,
-    "filesCount": 0
-  }
+  ]
 }

@@ -1,0 +1,15 @@
+meta {
+  name: All-songs
+  type: http
+  seq: 10
+}
+
+get {
+  url: {{base-url}}/song
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}

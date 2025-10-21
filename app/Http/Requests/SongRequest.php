@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AlbumRequest extends FormRequest
+class SongRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,18 +24,16 @@ class AlbumRequest extends FormRequest
         if($this->method() == 'PATCH'){
             return [
                 'name' => 'nullable|string|min:2',
-                'cover' => 'nullable|string|min:2',
-                'year' => 'nullable|numeric',
-                'genre' => 'nullable|string|min:2',
-                'artist_id' => 'nullable|numeric',
+                'lyrics' => 'nullable|string|min:2',
+                'songwriter' => 'nullable|string|min:2',
+                'album_id' => 'nullable|numeric'
             ];
         }
         return [
             'name' => 'required|string|min:2',
-            'cover' => 'required|string|min:2',
-            'year' => 'required|numeric',
-            'genre' => 'required|string|min:2',
-            'artist_id' => 'required|numeric',
+            'lyrics' => 'required|string|min:2',
+            'songwriter' => 'required|string|min:2',
+            'album_id' => 'required|numeric'
         ];
     }
 }
