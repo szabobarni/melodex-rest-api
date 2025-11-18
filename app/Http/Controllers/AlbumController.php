@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Album;
 use App\Http\Requests\AlbumRequest;
+use App\Http\Requests\SongRequest;
 
 class AlbumController extends Controller
 {
@@ -40,7 +41,20 @@ class AlbumController extends Controller
     {
         $album = Album::all();
         return response()->json([
-            'album' => $album,
+            'albums' => $album,
+        ]);
+    }
+
+    public function index_song($id) {
+        $album = Album::find($id);
+
+        if (!$album) {
+            return response()->json(['message' => 'Album not found'], 404);
+        }
+
+        return response()->json([
+            'album' => $album->name,
+            'songs' => $album->song
         ]);
     }
 
@@ -81,10 +95,21 @@ class AlbumController extends Controller
     {
         $album = Album::create($request->all());
 
-        return response()->json([
-            'album' => $album,
-        ]);
+        return response()->json(['message' => 'Album created successfully', 'album' => $album], 201);
     }
+    public function store_song(Request $request, $id)
+    {
+        $album = Album::find($id);
+
+        if (!$album) {
+            return response()->json(['message' => 'Album not found'], 404);
+        }
+
+        $song = $album->song()->create($request->all());
+
+        return response()->json(['message' => 'Song created successfully', 'song' => $song], 201);
+    }
+    
 
     /**
      * @api {patch} /album/:id Update an album
@@ -130,6 +155,25 @@ class AlbumController extends Controller
 			'album' => $album,
 		]);
 	} 
+    public function update_song(SongRequest $request, $album_id, $id)
+    {
+
+        $album = Album::find($album_id);
+
+        if (!$album) {
+            return response()->json(['message' => 'Album not found'], 404);
+        }
+
+        $song = $album->song()->find($id);
+
+        if (!$song) {
+            return response()->json(['message' => 'Song not found for this album'], 404);
+        }
+
+        $song->update($request->all());
+
+        return response()->json(['message' => 'Song updated successfully', 'song' => $song]);
+    }
 
     /**
      * @api {delete} /album/:id Delete an album
@@ -155,8 +199,26 @@ class AlbumController extends Controller
         $album = Album::findOrFail($id);
         $album->delete();
         return response()->json([
-            'message' => 'Album deleted successfully',
-            'id' => $id
-        ]);
+        'message' => 'Album deleted successfully',
+        'id' => $id
+    ], 410);
+    }
+
+    public function destroy_song($album_id, $id)
+    {
+        $album = Album::find($album_id);
+
+        if (!$album) {
+            return response()->json(['message' => 'Album not found'], 404);
+        }
+
+        $song = $album->song()->find($id);
+
+        if (!$song) {
+            return response()->json(['message' => 'Song not found for this album'], 404);
+        }
+
+        $song->delete();
+        return response()->json(['message' => 'Song deleted successfully', 'id' => $id], 410);
     }
 }

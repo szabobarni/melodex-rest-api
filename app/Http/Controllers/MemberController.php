@@ -42,7 +42,7 @@ class MemberController extends Controller
     {
         $member = Member::all();
         return response()->json([
-            'member' => $member,
+            'members' => $member,
         ]);
     }
         
@@ -85,8 +85,9 @@ class MemberController extends Controller
         $member = Member::create($request->all());
 
         return response()->json([
+            'message' => 'Member created successfully',
             'member' => $member,
-        ]);
+        ],201);
     }
         
     /**
@@ -130,6 +131,7 @@ class MemberController extends Controller
 		$member->update($request->all());
 
 		return response()->json([
+            'message' => 'Member updated successfully',
 			'member' => $member,
 		]);
 	}
@@ -160,6 +162,6 @@ class MemberController extends Controller
         return response()->json([
             'message' => 'Member deleted successfully',
             'id' => $id
-        ]);
+        ],410);
     }
 }

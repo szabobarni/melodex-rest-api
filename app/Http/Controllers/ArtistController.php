@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Artist;
 use App\Http\Requests\ArtistRequest;
+use App\Http\Requests\MemberRequest;
+use App\Http\Requests\AlbumRequest;
+use App\Http\Requests\SongRequest;
 
 class ArtistController extends Controller
 {
@@ -41,9 +44,64 @@ class ArtistController extends Controller
     {
         $artist = Artist::all();
         return response()->json([
-            'artist' => $artist,
+            'artists' => $artist,
         ]);
     }
+
+    public function index_member($id)
+    {
+        $artist = Artist::find($id);
+
+        if (!$artist) {
+            return response()->json(['message' => 'Artist not found'], 404);
+        }
+
+        if ($artist->is_band == "no") {
+            return response()->json(['message' => 'Artist is not a band'], 400);
+        }
+
+        return response()->json([
+            'artist' => $artist->name,
+            'members' => $artist->member
+        ]);
+    }
+
+    public function index_album($id)
+    {
+        $artist = Artist::find($id);
+
+        if (!$artist) {
+            return response()->json(['message' => 'Artist not found'], 404);
+        }
+
+        return response()->json([
+            'artist' => $artist->name,
+            'albums' => $artist->album
+        ]);
+    }
+
+    public function index_song($artist_id,$id)
+    {
+        $artist = Artist::find($artist_id);
+
+        if (!$artist) {
+            return response()->json(['message' => 'Artist not found'], 404);
+        }
+
+        $album = $artist->album()->find($id);
+
+        if (!$album) {
+            return response()->json(['message' => 'Album not found for this artist'], 404);
+        }
+
+        return response()->json([
+            'artist' => $artist->name,
+            'album' => $album->name,
+            'songs' => $album->song
+        ]);
+    }
+    
+
         
     /**
      * @api {post} /artist Create a new artist
@@ -84,6 +142,54 @@ class ArtistController extends Controller
         $artist = Artist::create($request->all());
 
         return response(json_encode(['artist' => $artist,]),201);
+    }
+    public function store_member(MemberRequest $request, $id)
+    {
+        $artist = Artist::find($id);
+
+        if (!$artist) {
+            return response()->json(['message' => 'Artist not found'], 404);
+        }
+
+        if ($artist->is_band == "no") {
+            return response()->json(['message' => 'Artist is not a band'], 400);
+        }
+
+        $member = $artist->member()->create($request->all());
+
+        return response()->json(['message' => 'Member created successfully', 'member' => $member], 201);
+    }
+
+    public function store_album(AlbumRequest $request, $id)
+    {
+        $artist = Artist::find($id);
+
+        if (!$artist) {
+            return response()->json(['message' => 'Artist not found'], 404);
+        }
+
+        $album = $artist->album()->create($request->all());
+
+        return response()->json(['message' => 'Album created successfully', 'album' => $album], 201);
+    }
+
+    public function store_song(SongRequest $request, $artist_id, $id)
+    {
+        $artist = Artist::find($artist_id);
+
+        if (!$artist) {
+            return response()->json(['message' => 'Artist not found'], 404);
+        }
+
+        $album = $artist->album()->find($id);
+
+        if (!$album) {
+            return response()->json(['message' => 'Album not found for this artist'], 404);
+        }
+
+        $song = $album->song()->create($request->all());
+
+        return response()->json(['message' => 'Song created successfully', 'song' => $song], 201);
     }
         
     /**
@@ -132,7 +238,76 @@ class ArtistController extends Controller
 		return response()->json([
 			'artist' => $artist,
 		]);
-	}
+        
+	}public function update_member(MemberRequest $request, $artist_id, $id)
+    {
+
+        $artist = Artist::find($artist_id);
+
+        if (!$artist) {
+            return response()->json(['message' => 'Artist not found'], 404);
+        }
+
+        if ($artist->is_band == "no") {
+            return response()->json(['message' => 'Artist is not a band'], 400);
+        }
+
+        $member = $artist->member()->find($id);
+
+        if (!$member) {
+            return response()->json(['message' => 'Member not found for this artist'], 404);
+        }
+
+        $member->update($request->all());
+
+        return response()->json(['message' => 'Member updated successfully', 'member' => $member]);
+    }
+
+    public function update_album(AlbumRequest $request, $artist_id, $id)
+    {
+
+        $artist = Artist::find($artist_id);
+
+        if (!$artist) {
+            return response()->json(['message' => 'Artist not found'], 404);
+        }
+
+        $album = $artist->album()->find($id);
+
+        if (!$album) {
+            return response()->json(['message' => 'Album not found for this artist'], 404);
+        }
+
+        $album->update($request->all());
+
+        return response()->json(['message' => 'Album updated successfully', 'album' => $album]);
+    }
+
+    public function update_song(SongRequest $request, $artist_id, $album_id, $id)
+    {
+
+        $artist = Artist::find($artist_id);
+
+        if (!$artist) {
+            return response()->json(['message' => 'Artist not found'], 404);
+        }
+
+        $album = $artist->album()->find($album_id);
+
+        if (!$album) {
+            return response()->json(['message' => 'Album not found for this artist'], 404);
+        }
+
+        $song = $album->song()->find($id);
+
+        if (!$song) {
+            return response()->json(['message' => 'Song not found for this album'], 404);
+        }
+
+        $song->update($request->all());
+
+        return response()->json(['message' => 'Song updated successfully', 'song' => $song]);
+    }
      
     /**
      * @api {delete} /artist/:id Delete an artist
@@ -162,5 +337,72 @@ class ArtistController extends Controller
         'id' => $id
     ], 410);
 
+    }
+     public function destroy_member($artist_id, $id)
+    {
+        $artist = Artist::find($artist_id);
+
+        if (!$artist) {
+            return response()->json(['message' => 'Artist not found'], 404);
+        }
+
+        if ($artist->is_band == "no") {
+            return response()->json(['message' => 'Artist is not a band'], 400);
+        }
+
+        $member = $artist->member()->find($id);
+
+        if (!$member) {
+            return response()->json(['message' => 'Member not found'], 404);
+        }
+
+        $member->delete();
+
+        return response()->json(['message' => 'Member deleted successfully', 'id' => $id], 410);
+    }
+
+    public function destroy_album($artist_id, $id)
+    {
+        $artist = Artist::find($artist_id);
+
+        if (!$artist) {
+            return response()->json(['message' => 'Artist not found'], 404);
+        }
+
+
+        $album = $artist->album()->find($id);
+
+        if (!$album) {
+            return response()->json(['message' => 'Album not found'], 404);
+        }
+
+        $album->delete();
+
+        return response()->json(['message' => 'Album deleted successfully', 'id' => $id], 410);
+    }
+
+    public function destroy_song($artist_id, $album_id, $id)
+    {
+        $artist = Artist::find($artist_id);
+
+        if (!$artist) {
+            return response()->json(['message' => 'Artist not found'], 404);
+        }
+
+        $album = $artist->album()->find($album_id);
+
+        if (!$album) {
+            return response()->json(['message' => 'Album not found for this artist'], 404);
+        }
+
+        $song = $album->song()->find($id);
+
+        if (!$song) {
+            return response()->json(['message' => 'Song not found for this album'], 404);
+        }
+
+        $song->delete();
+
+        return response()->json(['message' => 'Song deleted successfully', 'id' => $id], 410);
     }
 }

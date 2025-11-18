@@ -33,7 +33,7 @@ class ArtistRequest extends FormRequest
         return [
             'name' => 'required|string|min:2',
             'nationality' => 'required|string|min:2',
-            'image' => 'required|string|min:10',
+            'image' => 'nullable|string|min:10',
             'description' => 'required|string|min:10',
             'is_band' => 'required|string|min:2',
         ];

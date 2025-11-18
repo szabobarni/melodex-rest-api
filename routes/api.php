@@ -9,25 +9,46 @@ use App\Http\Controllers\SongController;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Router;
 
-Route::post('/user/login', [UserController::class, 'login']); 
-Route::get('/user', [UserController::class, 'index'])->middleware('auth:sanctum');
-
-Route::get('/artist', [ArtistController::class, 'index']);
-Route::post('/artist', [ArtistController::class, 'store'])->middleware('auth:sanctum');
-Route::patch('/artist/{id}', [ArtistController::class, 'update'])->middleware('auth:sanctum');
-Route::delete('/artist/{id}', [ArtistController::class, 'destroy'])->middleware('auth:sanctum');
-
-Route::get('/member', [MemberController::class, 'index']);
-Route::post('/member', [MemberController::class, 'store'])->middleware('auth:sanctum');
-Route::patch('/member/{id}', [MemberController::class, 'update'])->middleware('auth:sanctum');
-Route::delete('/member/{id}', [MemberController::class, 'destroy'])->middleware('auth:sanctum');
-
-Route::get('/album', [AlbumController::class, 'index']);
-Route::post('/album', [AlbumController::class, 'store'])->middleware('auth:sanctum');
-Route::patch('/album/{id}', [AlbumController::class, 'update'])->middleware('auth:sanctum');
-Route::delete('/album/{id}', [AlbumController::class, 'destroy'])->middleware('auth:sanctum');
-
-Route::get('/song', [SongController::class, 'index']);
-Route::post('/song', [SongController::class, 'store'])->middleware('auth:sanctum');
-Route::patch('/song/{id}', [SongController::class, 'update'])->middleware('auth:sanctum');
-Route::delete('/song/{id}', [SongController::class, 'destroy'])->middleware('auth:sanctum');
+//--Artist--
+Route::get('/artists', [ArtistApiController::class, 'index']);
+Route::post('/artist', [ArtistApiController::class, 'store'])->middleware('auth:sanctum');
+Route::patch('/artist/{id}', [ArtistApiController::class, 'update'])->middleware('auth:sanctum');
+Route::delete('/artist/{id}', [ArtistApiController::class, 'destroy'])->middleware('auth:sanctum');
+//--Artist/Member--
+Route::get('/artist/{id}/members', [ArtistApiController::class, 'index_member']);
+Route::post('/artist/{id}/member', [ArtistApiController::class, 'store_member'])->middleware('auth:sanctum');
+Route::patch('/artist/{artist_id}/member/{id}', [ArtistApiController::class, 'update_member'])->middleware('auth:sanctum');
+Route::delete('/artist/{artist_id}/member/{id}', [ArtistApiController::class, 'destroy_member'])->middleware('auth:sanctum');
+//--Artist/Album--
+Route::get('/artist/{id}/albums', [ArtistApiController::class, 'index_album']);
+Route::post('/artist/{id}/album', [ArtistApiController::class, 'store_album'])->middleware('auth:sanctum');
+Route::patch('/artist/{artist_id}/album/{id}', [ArtistApiController::class, 'update_album'])->middleware('auth:sanctum');
+Route::delete('/artist/{artist_id}/album/{id}', [ArtistApiController::class, 'destroy_album'])->middleware('auth:sanctum');
+//--Artist/Album/Song--
+Route::get('/artist/{artist_id}/album/{id}/songs', [ArtistApiController::class, 'index_song']);
+Route::post('/artist/{artist_id}/album/{id}/song', [ArtistApiController::class, 'store_song'])->middleware('auth:sanctum');
+Route::patch('/artist/{artist_id}/album/{album_id}/song/{id}', [ArtistApiController::class, 'update_song'])->middleware('auth:sanctum');
+Route::delete('/artist/{artist_id}/album/{album_id}/song/{id}', [ArtistApiController::class, 'destroy_song'])->middleware('auth:sanctum');
+//--Member--
+Route::get('/members', [MemberApiController::class, 'index']);
+Route::post('/member', [MemberApiController::class, 'store'])->middleware('auth:sanctum');
+Route::patch('/member/{id}', [MemberApiController::class, 'update'])->middleware('auth:sanctum');
+Route::delete('/member/{id}', [MemberApiController::class, 'destroy'])->middleware('auth:sanctum');
+//--Album--
+Route::get('/albums', [AlbumApiController::class, 'index']);
+Route::post('/album', [AlbumApiController::class, 'store'])->middleware('auth:sanctum');
+Route::patch('/album/{id}', [AlbumApiController::class, 'update'])->middleware('auth:sanctum');
+Route::delete('/album/{id}', [AlbumApiController::class, 'destroy'])->middleware('auth:sanctum');
+//--Album/Song--
+Route::get('/album/{id}/songs', [AlbumApiController::class, 'index_song']);
+Route::post('/album/{id}/song', [AlbumApiController::class, 'store_song'])->middleware('auth:sanctum');
+Route::patch('/album/{album_id}/song/{id}', [AlbumApiController::class, 'update_song'])->middleware('auth:sanctum');
+Route::delete('/album/{album_id}/song/{id}', [AlbumApiController::class, 'destroy_song'])->middleware('auth:sanctum');
+//--Song--
+Route::get('/songs', [SongApiController::class, 'index']);
+Route::post('/song', [SongApiController::class, 'store'])->middleware('auth:sanctum');
+Route::patch('/song/{id}', [SongApiController::class, 'update'])->middleware('auth:sanctum');
+Route::delete('/song/{id}', [SongApiController::class, 'destroy'])->middleware('auth:sanctum');
+//--User--
+Route::post('/user/login', [UserApiController::class, 'login']);
+Route::get('/users', [UserApiController::class, 'index'])->middleware('auth:sanctum');

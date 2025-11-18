@@ -40,7 +40,7 @@ class SongController extends Controller
     {
         $song = Song::all();
         return response()->json([
-            'song' => $song,
+            'songs' => $song,
         ]);
     }
         
@@ -80,8 +80,9 @@ class SongController extends Controller
         $song = Song::create($request->all());
 
         return response()->json([
+            'message' => 'Song created successfully',
             'song' => $song,
-        ]);
+        ],410);
     }
         
     /**
@@ -122,6 +123,7 @@ class SongController extends Controller
 		$song->update($request->all());
 
 		return response()->json([
+            'message' => 'Song updated successfully',
 			'song' => $song,
 		]);
 	} 
@@ -152,6 +154,6 @@ class SongController extends Controller
         return response()->json([
             'message' => 'Song deleted successfully',
             'id' => $id
-        ]);
+        ],410);
     }
 }

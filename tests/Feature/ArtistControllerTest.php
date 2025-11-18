@@ -25,7 +25,7 @@ class ArtistControllerTest extends TestCase
         Artist::factory()->create(['name' => 'Taylor Swift','nationality' => 'American','is_band' => 'no']);
         Artist::factory()->create(['name' => 'Frank Ocean','nationality' => 'American','is_band' => 'no']);
 
-        $response = $this->getJson('/api/artist');
+        $response = $this->getJson('/api/artists');
 
         $response->assertStatus(200)
             ->assertJsonFragment(['name' => 'Taylor Swift','nationality' => 'American','is_band' => 'no'])

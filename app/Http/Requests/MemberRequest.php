@@ -35,7 +35,7 @@ class MemberRequest extends FormRequest
             'instrument' => 'required|string|min:2',
             'year' => 'required|numeric',
             'artist_id' => 'required|numeric',
-            'image' => 'required|string|min:2'
+            'image' => 'nullable|string|min:2'
         ];
     }
 }
