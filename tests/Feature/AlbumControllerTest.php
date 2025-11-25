@@ -6,6 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use App\Models\Album;
 use App\Models\Artist;
+use App\Models\Song;
 use App\Models\User;
 use Tests\TestCase;
 
@@ -14,7 +15,7 @@ class AlbumControllerTest extends TestCase
     use RefreshDatabase;
     public function test_index_returns_all_albums()
     {
-        Album::factory()->create(['name' => 'The Life of a Showgirl']);
+        Album::factory()->create(['name' => 'The Life of a Showgirl','year'=>2023]);
         Album::factory()->create(['name' => 'Midnights']);
 
         $response = $this->getJson('/api/albums');
@@ -102,7 +103,7 @@ class AlbumControllerTest extends TestCase
         ]);
 
         $response->assertStatus(404)
-            ->assertJsonFragment(['message' => 'Not found!']);
+            ->assertJsonFragment(['message' => 'Album not found!']);
     }
 
     public function test_delete_removes_album()

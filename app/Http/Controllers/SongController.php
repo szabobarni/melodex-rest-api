@@ -82,7 +82,7 @@ class SongController extends Controller
         return response()->json([
             'message' => 'Song created successfully',
             'song' => $song,
-        ],410);
+        ],201);
     }
         
     /**
@@ -119,7 +119,10 @@ class SongController extends Controller
 
     public function update(SongRequest $request, $id)
 	{
-		$song = Song::findOrFail($id);
+		$song = Song::find($id);
+        if(empty($song)){
+            return response(json_encode(['message'=>"Song not found!"]),404);
+        };
 		$song->update($request->all());
 
 		return response()->json([

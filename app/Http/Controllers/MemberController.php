@@ -127,7 +127,10 @@ class MemberController extends Controller
 
     public function update(MemberRequest $request, $id)
 	{
-		$member = Member::findOrFail($id);
+		$member = Member::find($id);
+        if(empty($member)){
+            return response(json_encode(['message'=>"Member not found!"]),404);
+        };
 		$member->update($request->all());
 
 		return response()->json([

@@ -174,7 +174,7 @@ class AlbumController extends Controller
      *       "message": "Album not found"
      *     }
      */
-    public function store_song(Request $request, $id)
+    public function store_song(SongRequest $request, $id)
     {
         $album = Album::find($id);
 
@@ -225,7 +225,10 @@ class AlbumController extends Controller
 
     public function update(AlbumRequest $request, $id)
 	{
-		$album = Album::findOrFail($id);
+		$album = Album::find($id);
+        if(empty($album)){
+            return response(json_encode(['message'=>"Album not found!"]),404);
+        };
 		$album->update($request->all());
 
 		return response()->json([

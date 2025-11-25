@@ -31,7 +31,7 @@ class SongRequest extends FormRequest
         }
         return [
             'name' => 'required|string|min:2',
-            'lyrics' => 'required|string|min:2',
+            'lyrics' => 'nullable|string|min:2',
             'songwriter' => 'required|string|min:2',
             'album_id' => 'required|numeric'
         ];

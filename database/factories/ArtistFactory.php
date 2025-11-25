@@ -24,6 +24,8 @@ class ArtistFactory extends Factory
 		{
 			return [
 				'name' => $this->faker->unique()->word(),
+				'nationality' => $this->faker->unique()->word(),
+				'is_band' => $this->faker->unique()->word(),
 			];
 		}
 }
