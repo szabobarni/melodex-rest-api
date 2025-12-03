@@ -11,6 +11,7 @@ use Illuminate\Routing\Router;
 
 //--Artist--
 Route::get('/artists', [ArtistController::class, 'index']);
+Route::get('/artist/{id}', [ArtistController::class, 'show']);
 Route::post('/artist', [ArtistController::class, 'store'])->middleware('auth:sanctum');
 Route::patch('/artist/{id}', [ArtistController::class, 'update'])->middleware('auth:sanctum');
 Route::delete('/artist/{id}', [ArtistController::class, 'destroy'])->middleware('auth:sanctum');

@@ -48,6 +48,7 @@ class ArtistController extends Controller
         ]);
     }
 
+
     public function index_member($id)
     {
         $artist = Artist::find($id);
@@ -117,6 +118,55 @@ class ArtistController extends Controller
         return response()->json([
             'artist' => $artist->name,
             'albums' => $artist->album
+        ]);
+    }
+
+     /**
+     * @api {get} /artist/:id Get an artist by ID
+     * @apiName GetArtist
+     * @apiGroup Artist
+     * @apiVersion 1.0.0
+     *
+     * @apiParam {Number} id Artist ID.
+     *
+     * @apiSuccess {Object} artist Artist object.
+     * @apiSuccess {Number} artist.id Artist ID.
+     * @apiSuccess {String} artist.name Artist name.
+     * @apiSuccess {String} artist.nationality Artist nationality.
+     * @apiSuccess {String} artist.image Artist image URL.
+     * @apiSuccess {String} artist.description Artist description.
+     * @apiSuccess {String} artist.is_band Whether the artist is a band.
+     *
+     * @apiSuccessExample {json} Success-Response:
+     *     HTTP/1.1 200 OK
+     *     {
+     *       "artist": {
+     *         "id": 1,
+     *         "name": "Taylor Swift",
+     *         "nationality": "American",
+     *         "image": "https://m.media-amazon.com/images/M/MV5BYWYwYzYzMj...",
+     *         "description": "Taylor Swift began her career as a teenage country...",
+     *         "is_band": "no"
+     *       }
+     *     }
+     *
+     * @apiError (404) ArtistNotFound The specified artist was not found.
+     * @apiErrorExample {json} Error-Response:
+     *     HTTP/1.1 404 Not Found
+     *     {
+     *       "message": "Artist not found"
+     *     }
+     */
+    public function show($id)
+    {
+        $artist = Artist::find($id);
+
+        if (!$artist) {
+            return response()->json(['message' => 'Artist not found'], 404);
+        }
+
+        return response()->json([
+            'artist' => $artist,
         ]);
     }
 
