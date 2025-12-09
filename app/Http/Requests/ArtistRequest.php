@@ -34,7 +34,7 @@ class ArtistRequest extends FormRequest
             'name' => 'required|string|min:2',
             'nationality' => 'required|string|min:2',
             'image' => 'nullable|string|min:10',
-            'description' => 'required|string|min:10',
+            'description' => 'nullable|string|min:10',
             'is_band' => 'required|string|min:2',
         ];
     }

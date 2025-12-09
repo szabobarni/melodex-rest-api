@@ -1,4 +1,4 @@
-<<?php
+<?php
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -8,6 +8,9 @@ use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\SongController;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Router;
+use App\Http\Controllers\Auth\RegisterController;
+
+Route::post('/register', [RegisterController::class, 'store']);
 
 //--Artist--
 Route::get('/artists', [ArtistController::class, 'index']);
